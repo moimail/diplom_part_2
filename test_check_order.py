@@ -34,4 +34,6 @@ def test_crate_order():
     print(get_order_response.json())
     #Проверяем статус
     code_req = get_order_response.status_code
+   
     assert code_req == 200
+    # Тюпин Константин, 6-я когорта — Финальный проект. Инженер по тестированию плюс
