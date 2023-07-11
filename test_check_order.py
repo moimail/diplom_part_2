@@ -6,7 +6,7 @@ def post_create_order(body):
     return requests.post(config.URL_SERVICE + config.CREATE_ORDER_PATH, json=body)
 
 def get_order(track):
-    return requests.get(config.URL_SERVICE + config.CREATE_ORDER_PATH + track)
+    return requests.get(config.URL_SERVICE + config.GET_ORDER + str(track))
 
 
 def get_order_body(first_name):
@@ -19,7 +19,7 @@ def get_order_body(first_name):
 
 def test_crate_order():
     #Отправляем имя заказчика
-    body = get_order_body('Барисик')
+    body = get_order_body('Барc')
     print(body)
     #Добавляем заказ
     responce = post_create_order(body)
@@ -31,9 +31,10 @@ def test_crate_order():
     track = resp["track"]
     print(track)
     get_order_response = get_order(str(track))
-    print(get_order_response.json())
+    print(get_order_response.text)
+
     #Проверяем статус
     code_req = get_order_response.status_code
-   
+
     assert code_req == 200
     # Тюпин Константин, 6-я когорта — Финальный проект. Инженер по тестированию плюс
